@@ -6,10 +6,10 @@
 # renv::init()
 # renv::activate()
 
-library(mice)
 library(MASS)
+library(mice)
 
-# renv::settings$snapshot.type("all")
+#renv::snapshot()
 
 
 
@@ -39,6 +39,11 @@ ModeImputation = function(vec){
   return(vec)
 }
 
+
+normalize = function(x){
+  out = (x - min(x,na.rm = T)) / (max(x,na.rm = T) - min(x,na.rm = T))
+  return(out)
+}
 
 #_______________
 ####  CODE  ####
@@ -87,6 +92,13 @@ for(col in colnames(df_miss)){
 df_mode = data.frame(
   apply(df_miss, 2, FUN = ModeImputation)
 )
+
+
+##### KNN imputation ####
+
+# TODO
+
+##### MICE imputation ####
 
 
 
