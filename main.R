@@ -98,7 +98,19 @@ df_mode = data.frame(
 
 # TODO
 
+
 ##### MICE imputation ####
 
+#INFO:
+?mice
+#check details for all methods given
 
+df_temp = mice::mice(data = df_miss,
+               m = 3,
+               method = 'pmm',
+               maxit = 50,
+               seed = 500,
+               printFlag = FALSE)
 
+df_mice = mice::complete(data = df_temp, 
+                         action = 1)
